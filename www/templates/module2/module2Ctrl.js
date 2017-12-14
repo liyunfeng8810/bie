@@ -8,3 +8,9 @@ angularModuleSD
             Chats.remove(chat);
         };
     })
+    .controller('ChatDetailCtrl', function($scope, Chats,$stateParams) {
+        $scope.chat = Chats.get($stateParams.chatId);
+
+
+
+    })
