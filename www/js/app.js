@@ -46,33 +46,23 @@ app.run(function ($ionicPlatform) {
         $ionicConfigProvider.views.swipeBackEnabled(false); //ionic禁止滑动返回操作---适配iOS平台
         app.registerController = $controllerProvider.register;
         app.loadControllerJs = function(isLoadCss,numStr,isTabName){        //1 是否加载css ,2 路由复用的索引(几个诊断),3是否是永久tab页(我的页面)
-            return function ($q,ControllerChecker){
-                function handleViewName (json,isTabName){
+            return function ($q,ControllerChecker,getViewData){
+                function handleViewName (json){
                     var jsonName = {};
                     jsonName.name = json.self.name;
-                    debugger;
-                    if(isTabName){
-                        jsonName.controller = json.self.views[jsonName.name].controller
-                    }else{
-                        if(jsonName.name.indexOf('tab.') !=-1){
-                            var str = jsonName.name;
-                            jsonName.name = jsonName.name.replace("tab.","");
-                            jsonName.controller = json.self.views[str].controller;
-                        }else{
-                            jsonName.controller = json.self.controller;
-                        }
-                    }
+                    jsonName.controller = json.self.views[jsonName.name].controller || json.self.controller;
                     return jsonName;
                 }
+                var viewData = getViewData;
                 var self = this;
                 var jsonName = handleViewName(self,isTabName);
                 var viewName = jsonName.name;
                 var viewController = jsonName.controller;
-                numStr ? viewName = viewName.replace(numStr,""):null;       //主要针对几个诊断处理
-                isLoadCss ? addMovementCss(isPushController[viewName].cssPath): null;
+                debugger;
+                isLoadCss ? addMovementCss(viewData[viewName].cssPath): null;
                 var deferred = $q.defer();
                 if(!ControllerChecker.exists(viewController)){
-                    var path = isPushController[viewName].ctrlJsPath;
+                    var path = viewData[viewName].ctrlJsPath;
                     $.getScript(path, function() {
                         deferred.resolve('加载成功');
                     });
@@ -142,7 +132,7 @@ app.run(function ($ionicPlatform) {
                         templateUrl: 'templates/module4/tab-module4.html',
                         controller: 'module4Ctrl',
                         resolve: {
-                            deps:app.loadControllerJs(0,0,1)
+                            deps:app.loadControllerJs(1)
                         }
                     }
                 }

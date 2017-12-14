@@ -1,4 +1,33 @@
 angular.module('starter.services', [])
+
+    .factory('getViewData', function () {                     //通用data,其他特殊需求可新建
+        var viewData = {
+            "tab.module4": {
+                name: 'tab.module4',       // view参数信息
+                isGoCtrl: false,
+                ctrlJsPath: 'templates/module4/module4Ctrl.js',
+                cssPath: 'templates/double11/css/module4.css',
+                ctrlJs: 'module4Ctrl',
+                child: [
+                    {
+                        name: 'module4_Child',       //指标选择
+                        isGoCtrl: true,             //
+                        ctrlJsPath: 'templates/module4/child/module4ChildCtrl.js',
+                        ctrlJs: 'module4_ChildCtrl',
+                        state: {
+                            url: '/module4_Child',
+                            cache: false,
+                            params: {},
+                            templateUrl: 'templates/module4/child/module4Child.html',
+                            controller: 'module4_ChildCtrl'
+                        }
+                    }
+                ]
+            },
+        };
+        return viewData;
+
+    })
     .service('LocalsetGet', ['$window', function ($window) {      //保存本地变量
         return {        //存储单个属性
             set: function (key, value) {
@@ -46,22 +75,23 @@ angular.module('starter.services', [])
                     loadAppState(data.ziji);                    //子级路由
                 }
             },
-            removeAllfile:function(data){
-                function handleFileName(pathStr){
-                    var pathStrArr = pathStr.split( '/');
-                   // console.log(pathStrArr[(pathStrArr.length-1)]);
-                    return pathStrArr[(pathStrArr.length-1)];
+            removeAllfile: function (data) {
+                function handleFileName(pathStr) {
+                    var pathStrArr = pathStr.split('/');
+                    // console.log(pathStrArr[(pathStrArr.length-1)]);
+                    return pathStrArr[(pathStrArr.length - 1)];
                 }
+
                 if (data) {
                     //removejscssfile(handleFileName(data.ctrlJsPath), 'js');     //移除主js 引用
                     removejscssfile(handleFileName(data.cssPath), 'css');  //移除css文件
-                   /* for(var i = 0; i < data.ziji.length;i++){       //移除子级js引用文件
-                        console.log('移除----' + data.ziji[i].ctrlJsPath);
-                        removejscssfile(handleFileName(data.ziji[i].ctrlJsPath), 'js');
-                    }*/
+                    /* for(var i = 0; i < data.ziji.length;i++){       //移除子级js引用文件
+                     console.log('移除----' + data.ziji[i].ctrlJsPath);
+                     removejscssfile(handleFileName(data.ziji[i].ctrlJsPath), 'js');
+                     }*/
                     /*for(var i = 0;i < angularModuleSD._invokeQueue.length;i++){       //移除ctrl
-                        console.log(angularModuleSD._invokeQueue[i][2][0] == 'pkgTableDetailCtrl')
-                    }*/
+                     console.log(angularModuleSD._invokeQueue[i][2][0] == 'pkgTableDetailCtrl')
+                     }*/
                 }
             }
 
@@ -82,7 +112,6 @@ angular.module('starter.services', [])
     }])
     .factory('getData', function ($q) {                     //通用data,其他特殊需求可新建
         function getData(param, url) {
-            param.masterId = masterId;
             var url = baseUrl + url;
             var deferred = $q.defer();
             var datas = deferred.promise;
@@ -148,7 +177,6 @@ angular.module('starter.services', [])
             postData: postData
         };
     })
-
 
 
     .factory('CityNames', function ($q) {//城市数据地点回传
@@ -491,7 +519,7 @@ angular.module('starter.services', [])
             return calendarData;
         }
     })
-    .factory('Chats', function() {
+    .factory('Chats', function () {
         // Might use a resource here that returns a JSON array
 
         // Some fake testing data
@@ -523,13 +551,13 @@ angular.module('starter.services', [])
         }];
 
         return {
-            all: function() {
+            all: function () {
                 return chats;
             },
-            remove: function(chat) {
+            remove: function (chat) {
                 chats.splice(chats.indexOf(chat), 1);
             },
-            get: function(chatId) {
+            get: function (chatId) {
                 for (var i = 0; i < chats.length; i++) {
                     if (chats[i].id === parseInt(chatId)) {
                         return chats[i];
