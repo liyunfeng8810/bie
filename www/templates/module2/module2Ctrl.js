@@ -1,6 +1,6 @@
 
 angularModuleSD
-    .controller('module2Ctrl', function($scope, Chats) {
+    .controller('module2Ctrl', function($scope, Chats,getData) {
 
 
         $scope.chats = Chats.all();

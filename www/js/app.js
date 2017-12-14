@@ -5,9 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.directives', 'starter.filter'])
+var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.directives', 'starter.filter']);
 
-    .run(function ($ionicPlatform) {
+app.run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -23,12 +23,65 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         });
     })
 
-    .config(function ($stateProvider, $urlRouterProvider) {
+    .config(function ($stateProvider, $urlRouterProvider,$ionicConfigProvider,$controllerProvider) {
 
-        // Ionic uses AngularUI Router which uses the concept of states
-        // Learn more here: https://github.com/angular-ui/ui-router
-        // Set up the various states which the app can be in.
-        // Each state's controller can be found in controllers.js
+        $ionicConfigProvider.platform.ios.tabs.style('standard');
+        $ionicConfigProvider.platform.android.tabs.style('standard');
+        $ionicConfigProvider.tabs.position("bottom");     //配置tabs在android 或者ios平台在底部显示
+
+        $ionicConfigProvider.platform.ios.navBar.alignTitle('center');
+        $ionicConfigProvider.platform.android.navBar.alignTitle('center');//配置标题居中
+
+        $ionicConfigProvider.platform.ios.backButton.previousTitleText(false);
+        $ionicConfigProvider.platform.android.backButton.previousTitleText(false);//配置返回图标
+
+        $ionicConfigProvider.platform.ios.views.transition('ios');
+        $ionicConfigProvider.platform.android.views.transition('android');
+        $ionicConfigProvider.backButton.text('');//配置返回按钮后面的字为空
+
+        $ionicConfigProvider.views.maxCache(5);//最大缓存个数
+        $ionicConfigProvider.templates.maxPrefetch(4);//预加载个数
+        $ionicConfigProvider.scrolling.jsScrolling(false);//使用原生滚动
+        ionic.Platform.isFullScreen = true;
+        $ionicConfigProvider.views.swipeBackEnabled(false); //ionic禁止滑动返回操作---适配iOS平台
+        app.registerController = $controllerProvider.register;
+        app.loadControllerJs = function(isLoadCss,numStr,isTabName){        //1 是否加载css ,2 路由复用的索引(几个诊断),3是否是永久tab页(我的页面)
+            return function ($q,ControllerChecker){
+                function handleViewName (json,isTabName){
+                    var jsonName = {};
+                    jsonName.name = json.self.name;
+                    debugger;
+                    if(isTabName){
+                        jsonName.controller = json.self.views[jsonName.name].controller
+                    }else{
+                        if(jsonName.name.indexOf('tab.') !=-1){
+                            var str = jsonName.name;
+                            jsonName.name = jsonName.name.replace("tab.","");
+                            jsonName.controller = json.self.views[str].controller;
+                        }else{
+                            jsonName.controller = json.self.controller;
+                        }
+                    }
+                    return jsonName;
+                }
+                var self = this;
+                var jsonName = handleViewName(self,isTabName);
+                var viewName = jsonName.name;
+                var viewController = jsonName.controller;
+                numStr ? viewName = viewName.replace(numStr,""):null;       //主要针对几个诊断处理
+                isLoadCss ? addMovementCss(isPushController[viewName].cssPath): null;
+                var deferred = $q.defer();
+                if(!ControllerChecker.exists(viewController)){
+                    var path = isPushController[viewName].ctrlJsPath;
+                    $.getScript(path, function() {
+                        deferred.resolve('加载成功');
+                    });
+                }else{
+                    deferred.resolve('主ctrl已加载,无需再次引入');
+                }
+                return deferred.promise;
+            };
+        };
         $stateProvider
         // setup an abstract state for the tabs directive
             .state('tab', {
@@ -42,7 +95,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
             .state('tab.module1', {
                 url: '/module1',
                 views: {
-                    'tab-module1': {
+                    'tab.module1': {
                         templateUrl: 'templates/module1/tab-module1.html',
                         controller: 'module1Ctrl'
                     }
@@ -52,7 +105,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
             .state('tab.module2', {
                 url: '/module2',
                 views: {
-                    'tab-module2': {
+                    'tab.module2': {
                         templateUrl: 'templates/module2/tab-module2.html',
                         controller: 'module2Ctrl'
                     }
@@ -61,7 +114,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
             .state('tab.chat-detail', {
                 url: '/module2/:chatId',
                 views: {
-                    'tab-module2': {
+                    'tab.module2': {
                         templateUrl: 'templates/chat-detail.html',
                         controller: 'ChatDetailCtrl'
                     }
@@ -80,9 +133,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
             .state('tab.module4', {
                 url: '/module4',
                 views: {
-                    'tab-module4': {
+                    'tab.module4': {
                         templateUrl: 'templates/module4/tab-module4.html',
-                        controller: 'module4Ctrl'
+                        controller: 'module4Ctrl',
+                        resolve: {
+                            deps:app.loadControllerJs(0,0,1)
+                        }
                     }
                 }
             });
