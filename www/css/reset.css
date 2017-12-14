@@ -1,0 +1,73 @@
+/**
+ * Stylesheet
+ *
+ * v1.0
+ * 2017-03-24
+ * Author: 80002399
+ */
+
+html, body, div, span,
+h1, h2, h3, h4, h5, h6, p, a,b, u, i,
+dl, dt, dd, ol, ul, li, form,em,
+table, caption, tbody, tfoot, thead, tr, th, td,label,
+article, aside,  footer, header{
+	margin: 0;
+	padding: 0;
+	font-family: "Microsoft YaHei";
+	font-style: normal;
+    font-weight: normal;
+	list-style:none;
+}
+
+/*define link*/
+a:link{text-decoration: none; color:#222}		/* 未被访问*/
+a:visited{text-decoration: none; color:#222}	/* 已被访问*/
+a:hover,.search b:hover{text-decoration: none; color:rgb(67, 149, 255)}	/* 鼠标经过*/
+a:active {text-decoration: none;color:#222}		/* 鼠标激活*/
+a:focus{outline:none}
+
+a,.btin-tabs-line,span,btin-part-b-tabs b{
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+select:focus,
+input:focus{
+    outline:none!important;
+}
+
+/*clear float*/
+.clear{*zoom:1}
+.clear:after,.clear:before{clear:both;}
+
+
+/**placeholder**/
+::-webkit-input-placeholder { /* WebKit browsers */
+	text-align:left;color: #b2b2b2; text-indent:6px;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	text-align:left;color: #b2b2b2;text-indent:6px;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+	text-align:left;color: #b2b2b2;text-indent:6px;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+	text-align:left;color: #b2b2b2;text-indent:6px;
+}
+
+/*position*/
+.margin_auto{margin-right:auto; margin-left:auto;}
+.tl{text-align:left}
+.tc{text-align:center}
+.tr{text-align:right}
+.fl{float:left;display:inline}
+.fr{float:right;display:inline}
+.abs{ position:absolute}
+.rel{ position:relative}
+.fix{ position:fixed}
+.hidden{ display:none}
+.show{ display:block}
+.ioBox{overflow: hidden;}
