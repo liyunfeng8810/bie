@@ -1,5 +1,5 @@
-<ion-view hide-nav-bar="false">
-    <ion-content style="background:#323542; height: 100%;">
+<ion-view hide-nav-bar="true">
+    <ion-content style="background:#323542;">
         <ion-scroll style="height: {{windowH}}px;" overflow-scroll="false" has-bouncing="false" scrollbar-y="false">
             <div class="whole">
                 <div class="title">Welcome to Locaticus</div>
@@ -17,23 +17,61 @@
                             <span class="eamil-icon common-icon">
                                 <img src="templates/login/image/eamil.png"/>
                             </span>
-                            <input type="email" name="username" value="" ng-model="email" required placeholder="请输入您的邮箱"/>
+                            <input type="email" name="username"  ng-model="loginUserInfo.name" required placeholder="请输入您的邮箱"/>
                         </div>
                         <div class="user-pasw common-div">
                             <span class="pasw-icon common-icon">
                                 <img src="templates/login/image/password.png"/>
                             </span>
-                            <input type="password" name="password" value="" placeholder="请输入密码"/>
+                            <input type="password" name="password" ng-model="loginUserInfo.psd" value="" placeholder="请输入密码"/>
                         </div>
                         <div class="login-btn common-div" ng-click="loginGoHomePage()">登录</div>
                     </form>
                 </div>
 
                 <div class="forgets">
-                    <a href="#">我是新用户，账号注册</a>
+                    <a href="#" ng-click="registerPopup.show()">我是新用户，账号注册</a>
                 </div>
             </div>
         </ion-scroll>
     </ion-content>
+
+    <script id="register.html" type="text/ng-template">
+        <ion-modal-view style="background: #323542" >
+            <ion-scroll style="height: {{windowH}}px;" overflow-scroll="false" has-bouncing="false" scrollbar-y="false">
+                <div class="whole">
+                    <div class="title">请填写您的注册信息</div>
+                    <div class="login-form">
+                        <form action="#">
+                            <div class="user-name common-div">
+                                <span class="eamil-icon common-icon">
+                                    <img src="templates/login/image/eamil.png"/>
+                                </span>
+                                <input type="email" name="username"  ng-model="registerInfo.name" required placeholder="请输入您的邮箱"/>
+                            </div>
+                            <div class="user-pasw common-div">
+                                <span class="pasw-icon common-icon">
+                                    <img src="templates/login/image/password.png"/>
+                                </span>
+                                <input type="password" name="password" ng-model="registerInfo.pswA" placeholder="请输入您的密码"/>
+                            </div>
+
+                            <div class="user-pasw common-div">
+                                <span class="pasw-icon common-icon">
+                                    <img src="templates/login/image/password.png"/>
+                                </span>
+                                <input type="password" name="password" ng-model="registerInfo.pswB" placeholder="请再次输入您的密码"/>
+                            </div>
+                            <div class="login-btn common-div" ng-click="registerUserInfo()">注册</div>
+                        </form>
+                    </div>
+
+                    <div class="forgets">
+                        <a href="#" ng-click="registerPopup.hide()">已有账号，点击登录</a>
+                    </div>
+                </div>
+            </ion-scroll>
+        </ion-modal-view>
+    </script>
 </ion-view>
 
