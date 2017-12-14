@@ -1,49 +1,37 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0;"/>
-<title>login</title>
-<link rel="stylesheet" type="text/css" href="css/layer.css" />
-<link rel="stylesheet" type="text/css" href="css/login.css" />
-<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="js/phone.js" ></script>
-<script type="text/javascript" src="js/layer.min.js"></script>
-<script type="text/javascript" src="js/login.js"></script>
-</head>
-
-<body>
-<div class="whole">
-	<div class="title">Welcome to Locaticus</div>
-    <div class="coordinates-icon">
-    	<div class="coordinates topAct">
-        	<img src="image/coordinates.png" />
+<ion-view hide-nav-bar="true">
+    <ion-content style="background:#323542;" overflow-scroll="false">
+    <div class="whole">
+        <div class="title">Welcome to Locaticus</div>
+        <div class="coordinates-icon">
+            <div class="coordinates topAct">
+                <img src="templates/login/image/coordinates.png" />
+            </div>
+            <div class="circle-1-1 circle-show-2"></div>
+            <div class="circle-2-2 circle-show-1"></div>
+            <div class="circle-3-3 circle-show"></div>
         </div>
-        <div class="circle-1-1 circle-show-2"></div>
-        <div class="circle-2-2 circle-show-1"></div>
-        <div class="circle-3-3 circle-show"></div>
-    </div>
-    <div class="login-form">
-    	<form action="#">
-        	<div class="user-name common-div">
+        <div class="login-form">
+            <form action="#">
+                <div class="user-name common-div">
             	<span class="eamil-icon common-icon">
-                	<img src="image/eamil.png" />
+                	<img src="templates/login/image/eamil.png" />
                 </span>
-                <input type="email" name="username" value="" placeholder="请输入您的邮箱" />
-            </div>
-            <div class="user-pasw common-div">
+                    <input type="email" name="username" value="" placeholder="请输入您的邮箱" />
+                </div>
+                <div class="user-pasw common-div">
             	<span class="pasw-icon common-icon">
-                	<img src="image/password.png" />
+                	<img src="templates/login/image/password.png" />
                 </span>
-                <input type="password" name="password" value="" placeholder="请输入密码" />
-            </div>
-            <div class="login-btn common-div">Sign in</div>
-        </form>
-    </div>
+                    <input type="password" name="password" value="" placeholder="请输入密码" />
+                </div>
+                <div class="login-btn common-div">登录</div>
+            </form>
+        </div>
 
-    <div class="forgets">
-        <a href="#">我是新用户，账号注册</a>
+        <div class="forgets">
+            <a href="#">我是新用户，账号注册</a>
+        </div>
     </div>
-</div>
-</body>
-</html>
+    </ion-content>
+</ion-view>
+
