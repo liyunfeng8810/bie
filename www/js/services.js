@@ -6,7 +6,7 @@ angular.module('starter.services', [])
                 name: 'tab.module4',       // view参数信息
                 isGoCtrl: false,
                 ctrlJsPath: 'templates/module4/module4Ctrl.js',
-                cssPath: 'templates/double11/css/module4.css',
+                cssPath: 'templates/module4/module4.css',
                 ctrlJs: 'module4Ctrl',
                 child: [
                     {
@@ -23,6 +23,14 @@ angular.module('starter.services', [])
                         }
                     }
                 ]
+            },
+            "tab.module3": {
+                name: 'tab.module3',       // view参数信息
+                isGoCtrl: false,
+                ctrlJsPath: 'templates/module3/module3Ctrl.js',
+                cssPath: 'templates/module3/module3.css',
+                ctrlJs: 'module3Ctrl',
+                child: []
             },
         };
         return viewData;
@@ -71,8 +79,8 @@ angular.module('starter.services', [])
             },
             loadAll: function (data) {
                 if (data) {
-                    loadCtrlJs(data, ControllerChecker);        //动态加载子级js,
-                    loadAppState(data.ziji);                    //子级路由
+                    data.child ? loadCtrlJs(data, ControllerChecker) : null;        //动态加载子级js,
+                    data.child ? loadAppState(data.child) : null;                    //子级路由
                 }
             },
             removeAllfile: function (data) {

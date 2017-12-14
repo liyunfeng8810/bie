@@ -4,7 +4,7 @@ angularModuleSD.controller('module1Ctrl', function ($scope, getData, $ionicLoadi
     var param = {
         method: 'test1'
     };
-    getDataAll(param, module1Url.test);
+    //getDataAll(param, module1Url.test);
     function getDataAll(param, url) {
         $ionicLoading.show();
         getData.getData(param, url).then(function (result) {

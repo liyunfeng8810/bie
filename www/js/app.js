@@ -6,7 +6,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.directives', 'starter.filter']);
-
+var $stateProviderRef;
 app.run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -45,7 +45,11 @@ app.run(function ($ionicPlatform) {
         ionic.Platform.isFullScreen = true;
         $ionicConfigProvider.views.swipeBackEnabled(false); //ionic禁止滑动返回操作---适配iOS平台
         app.registerController = $controllerProvider.register;
-        app.loadControllerJs = function(isLoadCss,numStr,isTabName){        //1 是否加载css ,2 路由复用的索引(几个诊断),3是否是永久tab页(我的页面)
+
+
+        $stateProviderRef = $stateProvider;
+
+        app.loadControllerJs = function(isLoadCss){
             return function ($q,ControllerChecker,getViewData){
                 function handleViewName (json){
                     var jsonName = {};
@@ -53,16 +57,16 @@ app.run(function ($ionicPlatform) {
                     jsonName.controller = json.self.views[jsonName.name].controller || json.self.controller;
                     return jsonName;
                 }
-                var viewData = getViewData;
                 var self = this;
-                var jsonName = handleViewName(self,isTabName);
+                var viewData = getViewData
+                var jsonName = handleViewName(self);
                 var viewName = jsonName.name;
                 var viewController = jsonName.controller;
                 debugger;
-                isLoadCss ? addMovementCss(viewData[viewName].cssPath): null;
+                isLoadCss ? addMovementCss(getViewData[viewName].cssPath): null;
                 var deferred = $q.defer();
                 if(!ControllerChecker.exists(viewController)){
-                    var path = viewData[viewName].ctrlJsPath;
+                    var path = getViewData[viewName].ctrlJsPath;
                     $.getScript(path, function() {
                         deferred.resolve('加载成功');
                     });
@@ -115,13 +119,15 @@ app.run(function ($ionicPlatform) {
                     }
                 }
             })
-
             .state('tab.module3', {
                 url: '/module3',
                 views: {
-                    'tab-module3': {
+                    'tab.module3': {
                         templateUrl: 'templates/module3/tab-module3.html',
-                        controller: 'module3Ctrl'
+                        controller: 'module3Ctrl',
+                        resolve: {
+                            deps:app.loadControllerJs(1)
+                        }
                     }
                 }
             })
