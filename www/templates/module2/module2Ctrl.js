@@ -1,22 +1,33 @@
-angularModuleSD.controller('module2Ctrl', function ($scope, $stateParams, getData, $state, $ionicLoading, $rootScope) {
+angularModuleSD.controller('module2Ctrl', function ($scope,$stateParams,getData,$state, $ionicLoading, $rootScope) {
+    var proDetailGetData = function () {
+        $ionicLoading.show();
+        var url =baseUrl + moduleAbUrl.proDetail;
+        $.post(url,{
+            method:"queryJihuoxq",
+            params:JSON.stringify({
+                mktId:"1001"
+            })
+        },function(result){
+            var json = $.parseJSON(result);
+            $scope.perSize = json.custSize;
+            $scope.custList = json.custList;
+            $scope.group = json.group;
+            $scope.market = json.market;
+            debugger
+            $scope.$apply();
+        },"json");
+        $ionicLoading.hide();
+    };
+    proDetailGetData();
 
-
-
-
-    $scope.goModule3 = function () {
+    //立即抱团
+    $scope.doGroupNow = function () {
         $state.go("module3");
     };
-
-
-    var proDetailGetData = function () {
-        $.post("http://10.2.4.40:8080/server/doajax.do", {
-            method: "queryJihuoxq",
-            params: JSON.stringify({
-                mktId: "10001"
-            })
-        }, function (resultJSONObject) {
-            debugger
-        }, "json");
+    //分享团
+    $scope.shareGroupInfo = function () {
+        $state.go("module3Child01");
     };
+
 });
 

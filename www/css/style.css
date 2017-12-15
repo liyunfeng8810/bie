@@ -19,6 +19,9 @@
 .io-head-more{
     text-align: right;
 }
+.io-head-more i{
+    pointer-events: none;
+}
 .col-center{
     text-align: center;
 }
