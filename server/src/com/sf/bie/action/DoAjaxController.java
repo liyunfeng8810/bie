@@ -29,4 +29,12 @@ public class DoAjaxController extends BaseController{
 		return JSON.toJSONString(lstUser);
 	}
 	
+	@ResponseBody
+	@RequestMapping(params="method=test2")
+	public String test2(String uname) throws Exception{
+		/*List<User> lstUser = userService.selectUser();
+		String myname = JSON.toJSONString(lstUser);*/
+		return uname;
+	}
+	
 }
