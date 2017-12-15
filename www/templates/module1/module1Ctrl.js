@@ -20,6 +20,6 @@ angularModuleSD.controller('module1Ctrl', function ($scope, getData,$state, $ion
             }
         });
     }
-    getDataAll();
+    //getDataAll();
 
 });
