@@ -19,7 +19,7 @@ angularModuleSD.controller('loginCtrl', function($scope,$state,getData,$ionicLoa
         if(loginPsdVal==''){
             $ionicLoading.show({template: '密码为空!', noBackdrop: true, duration: 1000});
         }else{
-            $state.go("tab.module1");
+            $state.go("module1");
         }
     };
 
@@ -69,7 +69,7 @@ angularModuleSD.controller('loginCtrl', function($scope,$state,getData,$ionicLoa
 
     //登录确定按钮
     $scope.loginGoHomePage = function () {
-        $state.go("tab.module1");
+        $state.go("module1");
         //validateLoginInfo();
     };
 

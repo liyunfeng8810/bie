@@ -2,8 +2,8 @@ angular.module('starter.services', [])
 
     .factory('getViewData', function () {                     //通用data,其他特殊需求可新建
         var viewData = {
-            "tab.module4": {
-                name: 'tab.module4',       // view参数信息
+            "module4": {
+                name: 'module4',       // view参数信息
                 isGoCtrl: false,
                 ctrlJsPath: 'templates/module4/module4Ctrl.js',
                 cssPath: 'templates/module4/module4.css',
@@ -24,8 +24,8 @@ angular.module('starter.services', [])
                     }
                 ]
             },
-            "tab.module3": {
-                name: 'tab.module3',       // view参数信息
+            "module3": {
+                name: 'module3',       // view参数信息
                 isGoCtrl: false,
                 ctrlJsPath: 'templates/module3/module3Ctrl.js',
                 cssPath: 'templates/module3/module3.css',

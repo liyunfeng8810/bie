@@ -1,4 +1,4 @@
-app.registerController('module3Ctrl', function ($scope, getData, $controller) {
+app.registerController('module3Ctrl', function ($scope, getData, $controller,$state) {
     $controller('BaseViewCtrl', {$scope: $scope});
     console.log('加载module4Ctrl');
 
@@ -136,7 +136,11 @@ app.registerController('module3Ctrl', function ($scope, getData, $controller) {
     });
 
     $scope.baomingxihuo = function(){
+        var city = $("#myAddrs").val();
+        $scope.textName.city = city;
+        $state.go('module3Child01', {json: ''});
 
+        console.log(JSON.stringify($scope.textName));
     }
 
 })

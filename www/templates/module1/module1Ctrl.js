@@ -2,7 +2,7 @@ angularModuleSD.controller('module1Ctrl', function ($scope, getData,$state, $ion
     console.log('module1Ctrl加载');
     $scope.proDetailDill = function () {
          console.log("22");
-        $state.go("tab.module2");
+        $state.go("module2");
     };
     var param = {
         method: 'test1'
@@ -20,6 +20,6 @@ angularModuleSD.controller('module1Ctrl', function ($scope, getData,$state, $ion
             }
         });
     }
-    getDataAll();
+    //getDataAll();
 
 });

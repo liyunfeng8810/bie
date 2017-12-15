@@ -77,11 +77,11 @@ app.run(function ($ionicPlatform) {
         };
         $stateProvider
         // setup an abstract state for the tabs directive
-            .state('tab', {
+           /* .state('tab', {
                 url: '/tab',
                 abstract: true,
                 templateUrl: 'templates/tabs.html'
-            })
+            })*/
 
             // Each tab has its own nav history stack:
             .state('login', {
@@ -90,57 +90,39 @@ app.run(function ($ionicPlatform) {
                 controller: 'loginCtrl'
             })
 
-            .state('tab.module1', {
+            .state('module1', {
                 url: '/module1',
-                views: {
-                    'tab.module1': {
-                        templateUrl: 'templates/module1/tab-module1.html',
-                        controller: 'module1Ctrl'
-                    }
-                }
+                templateUrl: 'templates/module1/tab-module1.html',
+                controller: 'module1Ctrl'
+
             })
 
-            .state('tab.module2', {
+            .state('module2', {
                 url: '/module2',
-                views: {
-                    'tab.module2': {
-                        templateUrl: 'templates/module2/tab-module2.html',
-                        controller: 'module2Ctrl'
-                    }
-                }
+                templateUrl: 'templates/module2/tab-module2.html',
+                controller: 'module2Ctrl'
             })
-            .state('tab.chat-detail', {
-                url: '/module2/:chatId',
-                views: {
-                    'tab.module2': {
-                        templateUrl: 'templates/chat-detail.html',
-                        controller: 'ChatDetailCtrl'
-                    }
-                }
-            })
-            .state('tab.module3', {
+
+            .state('module3', {
                 url: '/module3',
-                views: {
-                    'tab.module3': {
-                        templateUrl: 'templates/module3/tab-module3.html',
-                        controller: 'module3Ctrl',
-                        resolve: {
-                            deps:app.loadControllerJs(1)
-                        }
-                    }
+                templateUrl: 'templates/module3/tab-module3.html',
+                controller: 'module3Ctrl',
+                resolve: {
+                    deps:app.loadControllerJs(1)
                 }
             })
-            .state('tab.module4', {
+            .state('module4', {
                 url: '/module4',
-                views: {
-                    'tab.module4': {
-                        templateUrl: 'templates/module4/tab-module4.html',
-                        controller: 'module4Ctrl',
-                        resolve: {
-                            deps:app.loadControllerJs(1)
-                        }
-                    }
+                templateUrl: 'templates/module4/tab-module4.html',
+                controller: 'module4Ctrl',
+                resolve: {
+                    deps:app.loadControllerJs(1)
                 }
+            })
+            .state('module3Child01', {
+                url: 'module3Child01',
+                templateUrl: 'templates/module3/module3Child01.html',
+                controller: 'module3Child01Ctrl'
             });
 
         // if none of the above states are matched, use this as the fallback
