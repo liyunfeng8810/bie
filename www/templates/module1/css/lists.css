@@ -212,4 +212,5 @@ span.icon-info-person{
     display: inline-block;
     float: right;
     background-size: 50% 50%;
+    pointer-events: none;
 }
