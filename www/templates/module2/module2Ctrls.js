@@ -1,4 +1,4 @@
-angularModuleSD.controller('module2Ctrl', function ($scope,$stateParams,getData,$state, $ionicLoading, $rootScope) {
+angularModuleSD.controller('module2Ctrl', function ($scope,$stateParams,$state,$ionicLoading) {
     var proDetailGetData = function () {
         $ionicLoading.show();
         var url =baseUrl + moduleAbUrl.proDetail;
@@ -13,7 +13,6 @@ angularModuleSD.controller('module2Ctrl', function ($scope,$stateParams,getData,
             $scope.custList = json.custList;
             $scope.group = json.group;
             $scope.market = json.market;
-            debugger
             $scope.$apply();
         },"json");
         $ionicLoading.hide();
