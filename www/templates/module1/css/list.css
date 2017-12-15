@@ -87,22 +87,50 @@
 }
 .io-page-tips{
     font-size: 12px;
-    padding-left:20px;
+    padding-left: 20px;
+    height: 30px;
+    line-height: 30px;
 }
 .io-detail-banner{
-    height:130px;
     text-align: center;
-    line-height:130px;
     position: relative;
+}
+.io-detail-banner img{
+    width:100%;
 }
 .io-detail-banner-tips{
     position: absolute;
     right:0;
     top:-12px;
-    width:60px;
-    height:60px;
+    width:88px;
+    height:88px;
     background: url("../../../img/Group8.png") no-repeat center;
     background-size: contain;
+}
+.io-detail-banner-tips span{
+    position: absolute;
+    top: 15px;
+    height: 20px;
+    line-height: 20px;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    color: #fff;
+    font-size: 10px;
+}
+.io-detail-banner-tips span i{
+    font-size: 18px;
+}
+.io-detail-banner-tips b{
+    line-height: 20px;
+    position: absolute;
+    top: 36px;
+    width: 100%;
+    text-align: center;
+    left: 0;
+    color: #fff;
+    font-weight: normal;
+    font-size: 10px;
 }
 .io-list-more.io-detail-page{
     margin-top: 0;
@@ -212,5 +240,4 @@ span.icon-info-person{
     display: inline-block;
     float: right;
     background-size: 50% 50%;
-    pointer-events: none;
 }
