@@ -20,13 +20,33 @@ public class UserService implements IUserService{
 	@Qualifier(UserDao.DAO_BEANNAME)
 	private IUserDao userDao;
 	
-	public void add(String uname){
-		System.out.println("UserService.add()");
-		User u = new User();
-		u.setUname(uname);
-		userDao.add(u);
+	/****
+	 * 添加用户
+	 * @param user
+	 */
+	@Override
+	public void addUser(User user){
+		userDao.add(user);
 	}
 	
+	/****
+	 * 获取登录的用户
+	 * @param password
+	 * @param email
+	 * @return
+	 */
+	@Override
+	public User getLoginUser(String email,String password){
+		return userDao.getSingleUser(email, password);
+	}
+	
+	/****
+	 * 获取登录的用户
+	 * @param userName
+	 * @param password
+	 * @return
+	 */
+	@Override
 	public List<User> selectUser(){
 		return userDao.selectUser();
 	}

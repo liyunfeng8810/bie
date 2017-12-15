@@ -1,5 +1,6 @@
 package com.sf.bie.action;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,47 +38,67 @@ public class UserController  extends BaseController{
     }  
 	
     @RequestMapping(value = "/toLogin.do", method = RequestMethod.GET)  
+    @ResponseBody
     public String toLogin(HttpServletRequest request){  
-        if(request.getSession().getAttribute("userToken")!=null){  
-            return "/index";
+        if(request.getSession().getAttribute("userToken")==null){
+            return "login";
         }  
-        return "login";
+        return "index";
     }  
 	      
-    @RequestMapping(value = "/login.do", method = RequestMethod.POST)  
+    @RequestMapping(value = "/login.do", method = RequestMethod.POST)
     @ResponseBody  
-    public Map<String, Object> login(@RequestParam(required=true,value="loginName") String loginName, 
+    public Map<String, Object> login(
+    		@RequestParam(required=true,value="email") String email, 
     		@RequestParam(required=true,value="pwd") String pwd,HttpServletRequest request){  
-        //ResultUtil result = new ResultUtil();  
+    	Map<String, Object> maps = new HashMap<>();
+    	maps.put("result","FAIL");//验证失败
+        maps.put("msg","登录失败");
         try{     
-            if(null != loginName && loginName.equals("admin") && null != pwd && pwd.equals("admin") ){  
                 //TODO 登陆成功,保存session  
-                HttpSession session =request.getSession();  
-                  
-                //UserToken userToken =new UserToken("admin","admin", "bucketName");  
-                  
-                //session.setAttribute("userToken",userToken);  
-                  
-                //设置超时无效  
-                //session.setMaxInactiveInterval(20);  
-                  
-            }else{  
-                //result.setSuccess(false);  
-                //result.setMsg("用户名或密码错误!");  
-            }  
-              
+                HttpSession session =request.getSession();
+                User user  = userService.getLoginUser(email, pwd);
+                if(null == user){//没有找到用户
+                	return maps;
+                }
+                session.setAttribute("userToken",user);
+                //设置超时无效 
+                session.setMaxInactiveInterval(20);
+            	
+                maps.put("result","SUCCESS");
+                maps.put("msg","登录成功");
         } catch (Exception e){  
-            //result.setSuccess(false);  
-            //result.setMsg("系统内部异常！");  
+        	 maps.put("result","ERROE");  
+             maps.put("msg","系统错误");    
         }  
-        return null;  
+        return maps;  
     }  
+    
+    @RequestMapping(value = "/logout.do", method = RequestMethod.POST)
+    @ResponseBody  
+    public Map<String, Object> logout(HttpServletRequest request){  
+    	Map<String, Object> maps = new HashMap<>();
+        try{     
+                //TODO 登陆成功,保存session  
+                HttpSession session =request.getSession();
+                session.removeAttribute("userToken");
+            	
+                maps.put("result","SUCCESS");
+                maps.put("msg","登出成功");
+        } catch (Exception e){  
+        	 maps.put("result","ERROE");
+             maps.put("msg","系统错误"); 
+        }  
+        return maps;  
+    } 
 	
 	@RequestMapping(value = "/reg.do", method = RequestMethod.POST)
 	public String reg(String uname){
 		System.out.println("UserController.reg()");
 		System.out.println(uname);
-		userService.add(uname);
+		User user = new User();
+		user.setUname(uname);
+		userService.addUser(user);
 		return "index";
 	}
 	

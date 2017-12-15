@@ -6,7 +6,23 @@ import com.sf.bie.domain.User;
 
 public interface IUserDao {
 	
-	public void add(User u);
+	/****
+	 * 添加用户
+	 * @param user
+	 */
+	public void add(User user);
 	
+	/****
+	 * 查询所有用户
+	 * @return
+	 */
 	public List<User> selectUser();
+	
+	/****
+	 * 获取登录的用户
+	 * @param password
+	 * @param email
+	 * @return
+	 */
+	public User getSingleUser(String email,String password);
 }
