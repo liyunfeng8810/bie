@@ -41,7 +41,7 @@
 }
 .io-list-more .io-progress{
     flex: 1;
-    background: #f8eee6;
+    background: #dfdfdf;
     border-radius: 14px;
     height: 12px;
     line-height: 12px;
@@ -76,7 +76,140 @@
 
 /*detail*/
 .io-page-title{
-    height:44px;
-    line-height:44px;
-    background: #000;
+    height: 44px;
+    line-height: 44px;
+    background: url(../../../img/Combined.png) no-repeat;
+    background-position: center center;
+    background-size: 100% 3px;
+    color: #ff6532;
+    text-align: center;
+    font-size: 16px;
+}
+.io-page-tips{
+    font-size: 12px;
+    padding-left:20px;
+}
+.io-detail-banner{
+    height:130px;
+    text-align: center;
+    line-height:130px;
+    position: relative;
+}
+.io-detail-banner-tips{
+    position: absolute;
+    right:0;
+    top:-12px;
+    width:60px;
+    height:60px;
+    background: url("../../../img/Group8.png") no-repeat center;
+    background-size: contain;
+}
+.io-list-more.io-detail-page{
+    margin-top: 0;
+    margin: 0 10px 0;
+    border-bottom: 1px solid #e6e6e6;
+}
+.io-list-more.io-detail-page .io-progress{
+    height:20px;
+}
+.io-list-more.io-detail-page .io-progress>span{
+    height: 20px;
+    line-height: 20px;
+}
+.io-list-more.io-detail-page i{
+    line-height:34px;
+    height:34px;
+}
+.io-list-more.io-detail-page i>span{
+    color: #ff6532;
+}
+.io-group-box-bordera{
+    border-bottom:1px solid #e6e6e6;
+    border-top:1px solid #e6e6e6;
+    padding:4px 10px;
+    margin:5px 0;
+}
+.io-group-box-borderb{
+    padding:4px 10px;
+    margin:5px 0;
+    border-top:1px solid #e6e6e6;
+}
+.io-page-tips-b{
+    padding: 0 10px;
+    height: 34px;
+    line-height: 34px;
+    font-size: 13px;
+    border-bottom:1px solid #e6e6e6;
+}
+.io-box-title{
+    line-height:30px;
+    height:30px;
+}
+.io-box-title b{
+    font-weight:normal;
+    font-size: 14px;
+}
+.io-box-title span{
+    font-size: 16px;
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    width:16px;
+    height:16px;
+}
+span.icon-info-person{
+    background: url("../../../img/persx.png") no-repeat center;
+    background-size: contain;
+}
+.io-pro-detail-desc{
+    color: #b2b2b2;
+}
+.io-perImg-wrap{
+    display: flex;
+    width:100%;
+    height:30px;
+    line-height:30px;
+}
+.io-perImg-wrap .io-perImg-list{
+    flex: 2;
+    overflow: hidden;
+}
+.io-perImg-wrap .io-perImg-tips{
+    flex:1;
+    text-align: right;
+}
+.io-perImg-wrap .io-perImg-tips span{
+    color: #ff6532;
+}
+.io-perImg-list span{
+    width:24px;
+    height:24px;
+    display: inline-block;
+    margin:3px 0;
+}
+.io-perImg-list span img{
+    width:100%;
+    height:100%;
+}
+.io-cantuan-info{
+    width: 100%;
+    height: 42px;
+    line-height: 40px;
+    background: #ff6532;
+    border: 1px solid #ff6532;
+    border-right: none;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+}
+.io-cantuan-info .io-do-now{
+    text-align: center;
+}
+.io-cantuan-info .io-share-now{
+    background: url(../../../img/share.png) no-repeat center center #fff;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    float: right;
+    background-size: 50% 50%;
 }
