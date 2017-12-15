@@ -1,92 +1,90 @@
 var userInfo = {}
-angularModuleSD.controller('loginCtrl', function($scope,$state,postData,$ionicLoading,$ionicModal,$ionicSlideBoxDelegate,$timeout) {
+angularModuleSD.controller('loginCtrl', function ($scope, $state, postData, $ionicLoading, $ionicModal, $ionicSlideBoxDelegate, $timeout) {
     $scope.windowH = $(window).height();
     //初始用户信息
     $scope.loginUserInfo = {
-        name:'liyunfeng11@163.com',
-        pwd:'123'
+        name: 'liyunfeng11@163.com',
+        pwd: '123'
     };
 
     //初始注册信息
     $scope.registerInfo = {
-        nikName:'',
-        name:'',
-        pwdA:'',
-        pwdB:''
+        nikName: '',
+        name: '',
+        pwdA: '',
+        pwdB: ''
     };
     //注册请求
-    var  registUserData = function() {
+    var registUserData = function () {
         $ionicLoading.show();
-        var url =loginUrl.register;
+        var url = loginUrl.register;
         var param = {
-            email:$scope.registerInfo.name,
-            unname:$scope.registerInfo.nikName,
-            pwd:$scope.registerInfo.pwdA
+            email: $scope.registerInfo.name,
+            unname: $scope.registerInfo.nikName,
+            pwd: $scope.registerInfo.pwdA
         };
-        $.post(baseUrl+url,param,function(result){
-            if(result.result == 'SUCCESS'){
+        $.post(baseUrl + url, param, function (result) {
+            if (result.result == 'SUCCESS') {
                 registerPopup.hide();
-            }else if(result.result == 'ERROE'){
+            } else if (result.result == 'ERROE') {
                 $ionicLoading.show({template: '注册失败!', noBackdrop: true, duration: 1000});
             }
             $timeout(function () {
                 $ionicLoading.hide();
-            },200)
-        },"json");
+            }, 200)
+        }, "json");
         $timeout(function () {
             $ionicLoading.hide();
-        },10000)
+        }, 10000)
     };
 
     //登录请求
-    var  getloginData = function() {
+    var getloginData = function () {
         $ionicLoading.show();
-        var url =loginUrl.login;
+        var url = loginUrl.login;
         var param = {
-            email:$scope.loginUserInfo.name,
-            pwd:$scope.loginUserInfo.pwd
+            email: $scope.loginUserInfo.name,
+            pwd: $scope.loginUserInfo.pwd
         };
-        $.post(baseUrl+url,param,function(result){
-            if(result.result == 'SUCCESS'){
+        $.post(baseUrl + url, param, function (result) {
+            if (result.result == 'SUCCESS') {
                 userInfo.castId = $scope.loginUserInfo;
-                $state.go("tab.module1");
-            }else if(result.result == 'FAIL'){
-                $ionicLoading.show({template: '用户名或密码错误!', noBackdrop: true, duration: 1000});;
-            }else if(result.result == 'ERROE'){
+                $state.go("module1");
+            } else if (result.result == 'FAIL') {
+                $ionicLoading.show({template: '用户名或密码错误!', noBackdrop: true, duration: 1000});
+                ;
+            } else if (result.result == 'ERROE') {
                 $ionicLoading.show({template: '系统错误!', noBackdrop: true, duration: 1000});
             }
             $timeout(function () {
                 $ionicLoading.hide();
-            },200)
-        },"json");
+            }, 200)
+        }, "json");
         $timeout(function () {
             $ionicLoading.hide();
-        },10000)
+        }, 10000)
     };
 
     //验证登录密码
     var validateLoginPsd = function () {
-        var loginPsdVal =  $scope.loginUserInfo;
-        if(loginPsdVal==''){
+        var loginPsdVal = $scope.loginUserInfo;
+        if (loginPsdVal == '') {
             $ionicLoading.show({template: '密码为空!', noBackdrop: true, duration: 1000});
-        }else{
-<<<<<<< HEAD
+        } else {
             $state.go("module1");
-=======
             getloginData();
->>>>>>> b80d9822b322e6587990ba4bdfe17df23957f7f7
         }
     };
 
     //验证登录用户名
-    var validateLoginInfo = function(){
-        var emails =  /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-        var userNameVal  = $scope.loginUserInfo.name;
-        if(emails.test(userNameVal)){
+    var validateLoginInfo = function () {
+        var emails = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        var userNameVal = $scope.loginUserInfo.name;
+        if (emails.test(userNameVal)) {
             validateLoginPsd();
-        }else if(userNameVal==''){
+        } else if (userNameVal == '') {
             $ionicLoading.show({template: '邮箱为空!', noBackdrop: true, duration: 1000});
-        }else{
+        } else {
             $ionicLoading.show({template: '邮箱格式不正确', noBackdrop: true, duration: 1000});
         }
     };
@@ -95,26 +93,26 @@ angularModuleSD.controller('loginCtrl', function($scope,$state,postData,$ionicLo
     var validateRegistPsd = function () {
         var pwdStrA = $scope.registerInfo.pwdA;
         var pwdStrB = $scope.registerInfo.pwdB;
-        if(pwdStrA == pwdStrB){
+        if (pwdStrA == pwdStrB) {
             //密码设置验证通过，请求接口
             registUserData()
-        }else if(pwdStrA && pwdStr.length<8){
+        } else if (pwdStrA && pwdStr.length < 8) {
             $ionicLoading.show({template: '密码长度不足8位', noBackdrop: true, duration: 1000});
-        }else if(pwdStrA==''){
+        } else if (pwdStrA == '') {
             $ionicLoading.show({template: '密码为空', noBackdrop: true, duration: 1000});
         }
     };
 
     //验证注册用户名
     var validateRegistInfo = function () {
-        var emails =  /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-        var usernameVal  = $scope.registerInfo.name;
-        if(emails.test(usernameVal)){
+        var emails = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        var usernameVal = $scope.registerInfo.name;
+        if (emails.test(usernameVal)) {
             //用户名验证通过，验证密码
             validateRegistPsd();
-        }else if(usernameVal==''){
+        } else if (usernameVal == '') {
             $ionicLoading.show({template: '邮箱为空!', noBackdrop: true, duration: 1000});
-        }else{
+        } else {
             $ionicLoading.show({template: '邮箱格式不正确', noBackdrop: true, duration: 1000});
         }
     };
@@ -122,19 +120,16 @@ angularModuleSD.controller('loginCtrl', function($scope,$state,postData,$ionicLo
 
     //登录确定按钮
     $scope.loginGoHomePage = function () {
-<<<<<<< HEAD
-        $state.go("module1");
-=======
->>>>>>> b80d9822b322e6587990ba4bdfe17df23957f7f7
-        //validateLoginInfo();
-        $state.go("tab.module2")
+
+        //$state.go("module1");
+
+        $state.go("module2")
     };
 
     //注册确定按钮
     $scope.registerUserInfo = function () {
         validateRegistInfo();
     };
-
 
 
     //注册弹框

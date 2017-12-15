@@ -1,9 +1,10 @@
 
-var baseUrl = 'http://10.2.4.40:8080/'; //baseUrl--本地的-周石育
+var baseUrl = 'http://10.2.4.38:8080/'; //baseUrl--本地的-周石育
 
 var loginUrl={
     login:'server/login.do',
-    register:'server/reg.do'
+    register:'server/reg.do',
+    doajax:'server/doajax.do'
 };
 
 var moduleAbUrl={

@@ -1,8 +1,31 @@
-app.registerController('module3Ctrl', function ($timeout,$ionicLoading,$scope, getData, postData,$controller,$state) {
+app.registerController('module3Ctrl', function ($ionicModal,$timeout,$ionicLoading,$scope, getData, postData,$controller,$state) {
     $controller('BaseViewCtrl', {$scope: $scope});
     console.log('加载module4Ctrl');
 
     $scope.textName = {};
+
+    $ionicModal.fromTemplateUrl('io-module2.html', {                                                                //B 弹出模块 DOM
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function (modal) {
+        $scope.module2Ups = modal;
+    });
+    getCity();
+    var addr_arr = [];
+    function getCity(){
+        var url = baseUrl + loginUrl.doajax;
+        var parms = {
+            method:"getCityInfo"
+        };
+        postData.postData(parms,url).then(function (result) {
+            addr_arr = $.parseJSON(result);
+        }, function (result) {
+            if (result.status == 0) {
+                $ionicLoading.show({template: '网络异常，请稍后重试!', noBackdrop: true, duration: 1500});
+            }
+        });
+    }
+
 
     $scope.textareaContNumber = function(){
         if($scope.textName.key){
@@ -12,8 +35,9 @@ app.registerController('module3Ctrl', function ($timeout,$ionicLoading,$scope, g
         }
     };
 
-    $scope.$on('$ionicView.afterEnter', function () {
 
+
+    $scope.$on('$ionicView.afterEnter', function () {
         /**
          * 通过数组id获取地址列表数组
          *
@@ -139,43 +163,45 @@ app.registerController('module3Ctrl', function ($timeout,$ionicLoading,$scope, g
         params:''
     };
     $scope.baomingxihuo = function(){
+        $scope.module2Ups.show();
         var city = $("#myAddrs").val();
         $scope.textName.city = city;
-        debugger;
+
 
         if(!handleTextName()){
-            debugger;
+
             return
         }
-        debugger;
+
         param.params = {
             userId:"01198764",
             groupId:"1000101",
             custAddressPt1:$scope.textName.city,
             custAddressPt2:$scope.textName.key,
             custName:$scope.textName.name,
-            custPhone:$scope.textName.phone ,
+            custPhone:$scope.textName.phone,
             custPreNum:$scope.textName.number ,
             custPreWeight:$scope.textName.weight
         };
-        $ionicLoading.show();
+        param.params = JSON.stringify(param.params);
+        //$ionicLoading.show();
         callLoading($timeout, $ionicLoading);
-        var url = baseUrl + loginUrl.register;
+        var url = baseUrl + loginUrl.doajax;
         postData.postData(param, url).then(function (result) {
             $ionicLoading.hide();
             //console.log(JSON.stringify(result) + "--");
-            $state.go('module3Child01', {json: param.params});
+
+            //$state.go('module3Child01', {json: param.params});
         }, function (result) {
             if (result.status == 0) {
                 $ionicLoading.show({template: '网络异常，请稍后重试!', noBackdrop: true, duration: 1500});
             }
         });
         //getDataAll();
-        console.log(JSON.stringify($scope.textName));
     };
 
     function handleTextName(){
-        debugger;
+
         if(!$scope.textName.key || $scope.textName.key.length < 5){
             $ionicLoading.show({template: '详细地址少于5个字', noBackdrop: true, duration: 1500});
             return false;
@@ -231,7 +257,6 @@ app.registerController('module3Ctrl', function ($timeout,$ionicLoading,$scope, g
     }
 
     function checkme(number){
-        debugger;
         var val=number;
         var mobilevalid = /^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}$/;
         if (!mobilevalid.test(val)) {
@@ -239,6 +264,10 @@ app.registerController('module3Ctrl', function ($timeout,$ionicLoading,$scope, g
         }
         return true;
     }
-
+    $.post("http://10.2.4.38:8080/server/doajax.do",{
+        method:"getCityInfo"
+    },function(resultJSONObject){
+        debugger
+    },"json");
 
 })
