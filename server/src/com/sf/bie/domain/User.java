@@ -5,20 +5,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="king_user")
 public class User {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="userid")
+	@Column(name="user_id")
 	private int id;
 	
-	@Column(name="username")
+	@Column(name="user_name")
 	private String uname;
 	
-	@Column(name="password")
+	@Column(name="user_passwd")
 	private String pwd;
+	
+	@Column(name="user_email")
+	private String email;
 	
 	public User(String uname, String pwd) {
 		super();
@@ -48,6 +53,10 @@ public class User {
 	public void setUname(String uname) {
 		this.uname = uname;
 	}
-	
-	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 }

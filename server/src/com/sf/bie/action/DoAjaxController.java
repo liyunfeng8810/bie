@@ -32,8 +32,6 @@ public class DoAjaxController extends BaseController{
 	@ResponseBody
 	@RequestMapping(params="method=test2")
 	public String test2(String uname) throws Exception{
-		/*List<User> lstUser = userService.selectUser();
-		String myname = JSON.toJSONString(lstUser);*/
 		return uname;
 	}
 	

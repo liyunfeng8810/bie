@@ -20,15 +20,28 @@ http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
 	<aop:aspectj-autoproxy />
 	
 		
-	<bean id="dataSource"  
+	<!-- <bean id="dataSource"  
+            class="org.apache.commons.dbcp.BasicDataSource">  
+            <property name="driverClassName"  
+                value="com.mysql.jdbc.Driver">  
+            </property> 
+            jdbc:mariadb://10.2.4.44 3306:3306/king?useUnicode=true&amp;characterEncoding=UTF8 
+            <property name="url" value="jdbc:mysql://10.202.44.154:3306/test?useUnicode=true&amp;characterEncoding=utf-8"></property>  
+            <property name="username" value="boeaudit"></property>  
+            <property name="password" value="passwd123"></property>
+    </bean>  --> 
+    
+    <bean id="dataSource"  
             class="org.apache.commons.dbcp.BasicDataSource">  
             <property name="driverClassName"  
                 value="com.mysql.jdbc.Driver">  
             </property>  
-            <property name="url" value="jdbc:mysql://10.202.44.154:3306/test?useUnicode=true&amp;characterEncoding=utf-8"></property>  
-            <property name="username" value="boeaudit"></property>  
-            <property name="password" value="passwd123"></property>
-    </bean>  
+            <property name="url" value="jdbc:mysql://10.2.4.44:3306/king?useUnicode=true&amp;characterEncoding=utf-8"></property>  
+            <property name="username" value="yale"></property>  
+            <property name="password" value="yale"></property>
+    </bean>
+    
+    
 
    <bean id="sessionFactory"  
        class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">  

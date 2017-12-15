@@ -17,6 +17,9 @@
 
 
 	<mvc:annotation-driven />  <!-- 支持spring3.0新的mvc注解 -->
+	
+	<bean class="com.sf.bie.common.BieBeanPostProcessor"/>
+		
 	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">

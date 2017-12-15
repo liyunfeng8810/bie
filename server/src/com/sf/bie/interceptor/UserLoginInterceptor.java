@@ -34,35 +34,29 @@ public class UserLoginInterceptor implements HandlerInterceptor {
 		
 		//创建session  
         HttpSession session =request.getSession();
-          
         //无需登录，允许访问的地址  
-        String[] allowUrls =new String[]{"/toLogin","/login"};  
+        String[] allowUrls =new String[]{"/toLogin","/login"};
               
         //获取请求地址  
         String url =request.getRequestURL().toString();  
           
         //获得session中的用户  
         //UserToken user =(UserToken) session.getAttribute("userToken");  
-      
-          
         for (String strUrl : allowUrls) {  
             if(url.contains(strUrl))  
             {  
                 return true;  
             }  
         }  
-          
         /*if(user ==null)  
         {  
         	return false;
-            //throw new UnLoginException("您尚未登录！");     
+            //throw new UnLoginException("您尚未登录！");
                                   
         }  */
         //重定向  
         //response.sendRedirect(request.getContextPath()+"/toLogin");  
-              
-          
-		return true;  //继续执行action
+		return false;//继续执行action
 	}
 
 }
