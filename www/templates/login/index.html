@@ -2,10 +2,10 @@
     <ion-content style="background:#323542;height: {{windowH}}px;overflow: hidden">
         <ion-scroll style="height: {{windowH}}px;" overflow-scroll="false" has-bouncing="false" scrollbar-y="false">
             <div class="whole">
-                <div class="title">Welcome to Locaticus</div>
+                <div class="title">集货助手</div>
                 <div class="coordinates-icon">
-                    <div class="coordinates topAct">
-                        <img src="templates/login/image/coordinates.png"/>
+                    <div class="coordinates">
+                        <img src="img/1.png"/>
                     </div>
                     <div class="circle-1-1 circle-show-2"></div>
                     <div class="circle-2-2 circle-show-1"></div>
@@ -23,7 +23,7 @@
                             <span class="pasw-icon common-icon">
                                 <img src="templates/login/image/password.png"/>
                             </span>
-                            <input type="password" name="password" ng-model="loginUserInfo.psd" value="" placeholder="请输入密码"/>
+                            <input type="password" name="password" ng-model="loginUserInfo.pwd" value="" placeholder="请输入密码"/>
                         </div>
                         <div class="login-btn common-div" ng-click="loginGoHomePage()">登录</div>
                     </form>
@@ -44,23 +44,28 @@
                     <div class="login-form">
                         <form action="#">
                             <div class="user-name common-div">
+                                <span class="icon-person_outline common-icon" style="color: #fff;font-size: 24px;"></span>
+                                <input type="text"  ng-model="registerInfo.nikName"  placeholder="请输入您的昵称"/>
+                            </div>
+
+                            <div class="user-name common-div">
                                 <span class="eamil-icon common-icon">
                                     <img src="templates/login/image/eamil.png"/>
                                 </span>
-                                <input type="email" name="username"  ng-model="registerInfo.name" required placeholder="请输入您的邮箱"/>
+                                <input type="email"  ng-model="registerInfo.name" required placeholder="请输入您的邮箱"/>
                             </div>
                             <div class="user-pasw common-div">
                                 <span class="pasw-icon common-icon">
                                     <img src="templates/login/image/password.png"/>
                                 </span>
-                                <input type="password" name="password" ng-model="registerInfo.pswA" placeholder="请输入您的密码"/>
+                                <input type="password"  ng-model="registerInfo.pwdA" required placeholder="请输入您的密码"/>
                             </div>
 
                             <div class="user-pasw common-div">
                                 <span class="pasw-icon common-icon">
                                     <img src="templates/login/image/password.png"/>
                                 </span>
-                                <input type="password" name="password" ng-model="registerInfo.pswB" placeholder="请再次输入您的密码"/>
+                                <input type="password"  ng-model="registerInfo.pwdB" required placeholder="请再次输入您的密码"/>
                             </div>
                             <div class="login-btn common-div" ng-click="registerUserInfo()">注册</div>
                         </form>
