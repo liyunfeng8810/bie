@@ -50,7 +50,7 @@ public class UserLoginInterceptor implements HandlerInterceptor {
             }  
         }  
         if(user ==null){  
-        	throw new UnLoginException("您尚未登录！");
+        	//throw new UnLoginException("您尚未登录！");
         }  
         //重定向  
         //response.sendRedirect(request.getContextPath()+"/toLogin")
