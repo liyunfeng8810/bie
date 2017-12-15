@@ -1,10 +1,56 @@
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery.scs.min.js"></script>
-<script src="js/CNAddrArr.min.js"></script>
 <ion-view view-title="module3">
-  <ion-content>
-    <div style="text-align:center">
-      <input type="text" readonly placeholder="Click me to pick an address" id="myAddrs" name="addr" data-key="4-84-1298" value="山西省 太原市 万柏林区" />
-    </div>
-  </ion-content>
+    <ion-content style="background-color: #F8F8F8" overflow-scroll="false" has-bouncing="false">
+
+        <div class="module3-02-background-color-fff">
+            <div class="module3-01-color padding"><i
+                    class="ion-location module3-02-icon-i"></i>寄件地址
+            </div>
+            <div style="display: flex;padding-top: 0;" class="padding module3-02-border-top">
+                <div class="module3-02-color grade_below_content_tab module3-02-jingdian">所在地区</div>
+                <input style="flex: 3;text-align: center;background-color: #fff;margin-left: 10%;" type="text" readonly
+                       placeholder="Click me to pick an address" id="myAddrs" name="addr" data-key="4-84-1298"
+                       value="山西省 太原市 万柏林区"/>
+                <span class="ion-ios-arrow-right grade_below_content_tab module3-02-icon-span"></span>
+            </div>
+            <div style="position: relative">
+                <textarea class="item-input-inset module3-02-border-topbottom" maxlength="150" type="text"
+                          placeholder="请填写详细地址,不少于5个字"
+                          style="flex: 2;font-size:14px;color:#262626;height:100px;width:100%;resize:none;"
+                          ng-model="textName.key"></textarea>
+                <div style="position: absolute;top: 80%;left: 88%;color: {{textName.key.length < 5 || !textName.key ? '#EF473A':'#000'}}" >{{textName.key ? textName.key.length : 0}}/200</div>
+
+            </div>
+        </div>
+        <div style="background-color: #F8F8F8;width: 100%;height: 10px"></div>
+
+        <div class="module3-02-background-color-fff">
+            <div class="module3-01-color padding"><i
+                    class="ion-android-person module3-02-icon-i"></i>寄件人
+            </div>
+            <input class="module3-02-1input" ng-model="textName.name"
+                   placeholder="请填写寄件人姓名" type="text"/>
+            <input class="module3-02-1input" style="border-top: solid 0!important;" ng-model="textName.phone" placeholder="请填写寄件人电话" type="text"/>
+        </div>
+        <div style="background-color: #F8F8F8;width: 100%;height: 7px"></div>
+
+        <div class="module3-02-background-color-fff">
+            <div class="module3-01-color padding" style="    color: black;">
+                预估每日寄件量 <span class="module3-003-span">(请如实填报,以便我们为您准备资源)</span>
+            </div>
+
+            <input class="module3-02-1input"
+                   placeholder="请填写寄件数量 (至少20件)" ng-model="textName.number"  type="number"/>
+            <input class="module3-02-1input" ng-model="textName.weight" style="border-top: solid 0!important;" placeholder="请选择单件平均重量(KG)"
+                   type="number"/>
+        </div>
+
+        <ion-footer-bar style="font-size: 20px;position: fixed;top: 118%;"
+                        align-title="left" keyboard-attach class="bar-assertive">
+            <div class="confirm_button_box grade_below_content_tab" style="position: static;" >
+                <div class="select_confirm_button" ng-click="baomingxihuo()">报名集货</div>
+            </div>
+        </ion-footer-bar>
+
+
+    </ion-content>
 </ion-view>

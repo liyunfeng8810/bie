@@ -1,9 +1,79 @@
 .module3-test-css{
     color: #4e4e4e;
 }
+
 .module3-01-color{
     color: #ff6532;
+    font-size: 16px;
+    height: 41px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.module3-02-color{
+    color: #B2B2B2;
 }
 .module3-02-background-color{
     background-color: #ff6532;
 }
+.module3-02-icon-i{
+    padding-right: 13px;
+    font-size: 20px;
+}
+.grade_below_content_tab {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+.module3-02-icon-span{
+    flex: 0.2;
+    font-size: 21px;
+    padding-top: 3px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.module3-02-jingdian{
+    font-size: 15px;
+    flex: 2;
+    justify-content: flex-start;
+}
+.module3-02-border-topbottom{
+    border-top: solid 1px #E6E6E6;
+    border-bottom: solid 1px #E6E6E6;
+}
+.module3-02-border-top{
+    border-top: solid 1px #E6E6E6;
+}
+.module3-02-padding-leftright{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.module3-02-padding-right{
+    padding-left: 10px;
+}
+.module3-02-1input{
+    border-top: solid 1px #E6E6E6 !important;
+    border-bottom: solid 1px #E6E6E6!important;
+    width: 100%;
+    height: 41px!important;
+    padding-left: 10px!important;
+    padding-top: 0!important;
+}
+.module3-02-background-color-fff{
+  background-color: #fff;
+}
+.module3-003-span{
+    padding-left: 10px;
+    font-size: 10px;
+    color: #b2b2b2;
+}
+
+
+
+
+
+
+
