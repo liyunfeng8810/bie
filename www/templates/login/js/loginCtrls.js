@@ -1,4 +1,4 @@
-angularModuleSD.controller('loginCtrl', function($scope,$state,postData,$ionicLoading,$ionicModal,$ionicSlideBoxDelegate,$timeout) {
+angularModuleSD.controller('loginCtrl', function($scope,$state,$ionicLoading,$ionicModal,$ionicSlideBoxDelegate,$timeout) {
     $scope.windowH = $(window).height();
     //初始用户信息
     $scope.loginUserInfo = {
@@ -36,7 +36,6 @@ angularModuleSD.controller('loginCtrl', function($scope,$state,postData,$ionicLo
             $ionicLoading.hide();
         },10000)
     };
-
 
     //登录请求
     var getloginData = function() {
