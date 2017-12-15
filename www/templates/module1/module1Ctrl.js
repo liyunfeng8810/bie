@@ -1,10 +1,14 @@
-angularModuleSD.controller('module1Ctrl', function ($scope, getData, $ionicLoading, $rootScope) {
+angularModuleSD.controller('module1Ctrl', function ($scope, getData,$state, $ionicLoading, $rootScope) {
     console.log('module1Ctrl加载');
-
+    $scope.proDetailDill = function () {
+         console.log("22");
+        $state.go("tab.module2");
+    };
     var param = {
         method: 'test1'
     };
     //getDataAll(param, module1Url.test);
+
     function getDataAll(param, url) {
         $ionicLoading.show();
         getData.getData(param, url).then(function (result) {
@@ -16,4 +20,6 @@ angularModuleSD.controller('module1Ctrl', function ($scope, getData, $ionicLoadi
             }
         });
     }
-})
+    getDataAll();
+
+});

@@ -8,6 +8,7 @@
     font-size: 24px;
     line-height: 24px;
     color: #fff;
+    line-height: 24px;
 }
 .io-head-center{
     color: #fff;
@@ -15,10 +16,20 @@
     text-align: center;
     padding:0;
 }
+.io-head-more{
+    text-align: right;
+}
 .col-center{
     text-align: center;
 }
 .io-common-content{
     margin-top:44px;
     padding:0;
+}
+.io-head-more i{
+    color: #fff;
+    font-size: 18px;
+    position: relative;
+    top: -1px;
+    pointer-events: none;
 }
