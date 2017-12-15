@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="KING_CUST")
@@ -51,6 +52,7 @@ public class Cust {
 	private int custStatus;
 	
 	@Column(name="LOAD_TM")
+	@DateTimeFormat(pattern="yyyy-MM-dd")  
 	private Date loadTm;
 	
 	
