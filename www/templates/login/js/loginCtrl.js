@@ -2,8 +2,8 @@ angularModuleSD.controller('loginCtrl', function($scope,$state,$ionicLoading,$io
     $scope.windowH = $(window).height();
     //初始用户信息
     $scope.loginUserInfo = {
-        name:'liyunfeng11@163.com',
-        pwd:'123'
+        name:'',
+        pwd:''
     };
 
     //初始注册信息
