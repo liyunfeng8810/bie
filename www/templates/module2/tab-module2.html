@@ -1,16 +1,76 @@
-<ion-view view-title="module2">
-  <ion-content>
-    <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/module2/{{chat.id}}">
-        <img ng-src="{{chat.face}}">
-        <h2>{{chat.name}}</h2>
-        <p>{{chat.lastText}}</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
+<ion-view hide-nav-bar="true">
+    <div class="bar bar-subheader io-model-header io-group-head">
+        <div class="row m_p_0">
+            <div ng-click="$ionicGoBack()" class="goBackStyle">
+                <i class="icon ion-ios-arrow-left"></i>
+            </div>
+            <div class="col col-34 m_p_0  io-head-center">集货详情</div>
+            <div class="col col-23 m_p_0 io-head-more">
+                <i class="icon-more_horiz"></i>
+            </div>
+        </div>
+    </div>
 
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
-          Delete
-        </ion-option-button>
-      </ion-item>
-    </ion-list>
-  </ion-content>
+    <ion-content class="padding io-common-content" scrollbar-y="false">
+        <!--head-->
+        <div class="io-group-box">
+            <div class="io-page-title">鞋服专送0809312期</div>
+            <div class="io-page-tips">
+                1.5-3kg 每日最低需 <span>20</span> 件
+            </div>
+        </div>
+
+        <!--banner-->
+        <div class="io-group-box">
+            <div class="io-detail-banner">
+                <div class="img"></div>
+                <div class="io-detail-banner-tips">
+                </div>
+            </div>
+            <div class="io-list-more io-detail-page">
+                <div class="io-progress">
+                    <span>10%</span>
+                </div>
+                <div class="io-list-btn">
+                    <i>还差 <span>2</span>人即可成团</i>
+                </div>
+            </div>
+
+            <div class="io-page-tips-b">
+                截止日期：<span>8月12日</span>
+            </div>
+        </div>
+
+        <!--desc-->
+        <div class="io-group-box">
+            <div class="io-box-title">
+                <span class="icon-info_outline"></span>
+                <b>使用要求</b>
+            </div>
+            <div class="io-pro-detail-desc">
+                电商客户集中在专业市场等区域，具有发货集中、发件规模较大的特征，但该类客群对价格相对较为敏感，我司在该类市场占有率较低。为持续稳固我司的市场地位，留住老客户、吸引新客户，提升我司市场占有率，急需利用该类客群的分布特点及发货特征，调整运营模式，降低成本，让利客户。
+            </div>
+        </div>
+
+        <div class="io-group-box">
+            <div class="io-box-title">
+                <span class="icon-info-person"></span>
+                <b>最近参与</b>
+            </div>
+            <div class="io-perImg-wrap">
+                <div class="io-perImg-list">
+                    <span><img src="img/quan.png" alt=""></span>
+                    <span><img src="img/quan.png" alt=""></span>
+                    <span><img src="img/quan.png" alt=""></span>
+                    <span><img src="img/quan.png" alt=""></span>
+                </div>
+                <div class="io-perImg-tips">已有<span>12</span>人参团</div>
+            </div>
+        </div>
+
+        <div class="io-cantuan-info">
+            <span class="io-do-now">立即参加</span>
+            <span class="io-share-now"></span>
+        </div>
+    </ion-content>
 </ion-view>

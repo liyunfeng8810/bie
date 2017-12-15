@@ -1,0 +1,82 @@
+/* Empty. Add your own CSS if you like */
+.io-group-ul{
+    width:100%;
+    height:auto;
+}
+.io-group-ul li{
+    display: flex;
+    height:100px;
+    margin:4px auto;
+}
+.io-group-ul li .io-pro_img{
+    flex:1;
+    margin:5px;
+    pointer-events: none;
+}
+.io-group-ul li .io-pro_img img{
+    width:100%;
+    height:100%;
+    pointer-events: none;
+}
+.io-group-ul li .io-pro_info{
+    flex:2.1;
+    margin: 5px 0 5px 5px;
+    pointer-events: none;
+}
+.io-pro_info h3{
+    font-size: 14px;
+    font-weight: bold;
+    pointer-events: none;
+}
+.io-pro_info>span{
+    color: #d36a48;
+    font-size: 12px;
+    margin-top: 4px;
+    display: inline-block;
+    pointer-events: none;
+}
+.io-list-more{
+    margin-top:25px;
+    display: flex;
+}
+.io-list-more .io-progress{
+    flex: 1;
+    background: #f8eee6;
+    border-radius: 14px;
+    height: 12px;
+    line-height: 12px;
+    margin: 7px 0;
+    overflow: hidden;
+}
+.io-list-more .io-list-btn{
+    flex:1;
+    text-align: right
+}
+.io-list-btn>span{
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+    text-align: center;
+    background: #E64040;
+    color: #fff;
+    padding: 0 8px;
+    border-radius: 28px;
+    font-size: 12px;
+    margin: 3px 8px 2px 0;
+}
+.io-progress>span{
+    color: #fff;
+    background: #ff6532;
+    width:20%;
+    font-size: 10px;
+    display: inline-block;
+    text-align: center;
+}
+
+
+/*detail*/
+.io-page-title{
+    height:44px;
+    line-height:44px;
+    background: #000;
+}
