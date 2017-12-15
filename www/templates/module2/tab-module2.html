@@ -5,7 +5,7 @@
                 <i class="icon ion-ios-arrow-left"></i>
             </div>
             <div class="col col-34 m_p_0  io-head-center">集货详情</div>
-            <div class="col col-23 m_p_0 io-head-more">
+            <div class="col col-23 m_p_0 io-head-more" ng-click="shareGroupInfo()">
                 <i class="icon-more_horiz"></i>
             </div>
         </div>
@@ -16,7 +16,7 @@
         <div class="io-group-box">
             <div class="io-page-title">{{market.mktNameShow}}</div>
             <div class="io-page-tips">
-                {{market.weightMin}}-{{market.weightMax}}kg 每日最低需 <span>{{market.dailyMinPackages}}</span> 件
+                {{market.weightMin}}-{{market.weightMax}}kg每日最低需<span>{{market.dailyMinPackages}}</span>件
             </div>
         </div>
 
@@ -25,16 +25,16 @@
             <div class="io-detail-banner">
                 <div class="img"><img src="img/banner.jpg" alt=""></div>
                 <div class="io-detail-banner-tips">
-                    <span>低至￥<i>6</i></span>
-                    <b>1.5kg</b>
+                    <span>低至￥<i>{{market.basePrice}}</i></span>
+                    <b>{{market.baseWeight}}kg</b>
                 </div>
             </div>
             <div class="io-list-more io-detail-page">
                 <div class="io-progress">
-                    <span>10%</span>
+                    <span style="width:{{perSize/market.groupLimit*100}}%">{{perSize/market.groupLimit*100}}%</span>
                 </div>
                 <div class="io-list-btn">
-                    <i>还差 <span>2</span>人即可成团</i>
+                    <i>还差 <span>{{market.groupLimit-perSize}}</span>人即可成团</i>
                 </div>
             </div>
 
@@ -49,9 +49,7 @@
                 <span class="icon-info_outline"></span>
                 <b>使用要求</b>
             </div>
-            <div class="io-pro-detail-desc">
-                电商客户集中在专业市场等区域，具有发货集中、发件规模较大的特征，但该类客群对价格相对较为敏感，我司在该类市场占有率较低。为持续稳固我司的市场地位，留住老客户、吸引新客户，提升我司市场占有率，急需利用该类客群的分布特点及发货特征，调整运营模式，降低成本，让利客户。
-            </div>
+            <div class="io-pro-detail-desc">{{market.useRequire}}</div>
         </div>
 
         <!--最近参与-->
@@ -62,24 +60,13 @@
             </div>
             <div class="io-perImg-wrap">
                 <div class="io-perImg-list">
-                    <span><img src="img/quan.png" alt=""></span>
-                    <span><img src="img/quan.png" alt=""></span>
-                    <span><img src="img/quan.png" alt=""></span>
-                    <span><img src="img/quan.png" alt=""></span>
-                    <span><img src="img/quan.png" alt=""></span>
-                    <span><img src="img/quan.png" alt=""></span>
-                    <span><img src="img/quan.png" alt=""></span>
-                    <span><img src="img/quan.png" alt=""></span>
-                    <span><img src="img/quan.png" alt=""></span>
-                    <span><img src="img/quan.png" alt=""></span>
-                    <span><img src="img/quan.png" alt=""></span>
-                    <span><img src="img/quan.png" alt=""></span>
+                    <span ng-repeat="x in custList"><img src="img/ben.png" alt=""></span>
                 </div>
-                <div class="io-perImg-tips">已有<span>12</span>人参团</div>
+                <div class="io-perImg-tips">已有<span>{{perSize}}</span>人参团</div>
             </div>
         </div>
 
-        <div class="io-cantuan-info" ng-click="goModule3()">
+        <div class="io-cantuan-info bar bar-footer" ng-click="goModule3()">
             <span class="io-do-now" ng-click="doGroupNow()">立即参加</span>
             <span class="io-share-now" ng-click="shareGroupInfo()"></span>
         </div>

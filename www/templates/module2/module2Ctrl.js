@@ -5,26 +5,29 @@ angularModuleSD.controller('module2Ctrl', function ($scope,$stateParams,getData,
         $.post(url,{
             method:"queryJihuoxq",
             params:JSON.stringify({
-                mktId:"10001"
+                mktId:"1001"
             })
         },function(result){
             var json = $.parseJSON(result);
+            $scope.perSize = json.custSize;
             $scope.custList = json.custList;
             $scope.group = json.group;
             $scope.market = json.market;
+            debugger
             $scope.$apply();
         },"json");
         $ionicLoading.hide();
     };
     proDetailGetData();
 
-    //¡¢º¥≤ŒÕ≈
+    //Á´ãÂç≥Êä±Âõ¢
     $scope.doGroupNow = function () {
-        $state.go("tab.module1");
+        $state.go("module3");
     };
-    //∑÷œÌÕ≈
-    $scope.doGroupNow = function () {
-        $state.go("tab.module1");
+    //ÂàÜ‰∫´Âõ¢
+    $scope.shareGroupInfo = function () {
+        $state.go("module3Child01");
     };
+
 });
 

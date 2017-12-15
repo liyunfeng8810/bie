@@ -1,4 +1,3 @@
-var userInfo = {}
 angularModuleSD.controller('loginCtrl', function($scope,$state,postData,$ionicLoading,$ionicModal,$ionicSlideBoxDelegate,$timeout) {
     $scope.windowH = $(window).height();
     //初始用户信息
@@ -40,20 +39,20 @@ angularModuleSD.controller('loginCtrl', function($scope,$state,postData,$ionicLo
 
 
     //登录请求
-    var  getloginData = function() {
+    var getloginData = function() {
         $ionicLoading.show();
         var url =loginUrl.login;
         var param = {
             email:$scope.loginUserInfo.name,
             pwd:$scope.loginUserInfo.pwd
         };
+
         $.post(baseUrl+url,param,function(result){
-            if(result.result == 'SUCCESS'){
-                userInfo.castId = $scope.loginUserInfo;
-                $state.go("tab.module1");
-            }else if(result.result == 'FAIL'){
+            if(result.result == 'success'){
+                $state.go("module2");
+            }else if(result.result == 'fail'){
                 $ionicLoading.show({template: '用户名或密码错误!', noBackdrop: true, duration: 1000});;
-            }else if(result.result == 'ERROE'){
+            }else if(result.result == 'error'){
                 $ionicLoading.show({template: '系统错误!', noBackdrop: true, duration: 1000});
             }
             $timeout(function () {
@@ -71,7 +70,6 @@ angularModuleSD.controller('loginCtrl', function($scope,$state,postData,$ionicLo
         if(loginPsdVal==''){
             $ionicLoading.show({template: '密码为空!', noBackdrop: true, duration: 1000});
         }else{
-            $state.go("module1");
             getloginData();
         }
     };
@@ -120,8 +118,7 @@ angularModuleSD.controller('loginCtrl', function($scope,$state,postData,$ionicLo
 
     //登录确定按钮
     $scope.loginGoHomePage = function () {
-        $state.go("module1");
-        $state.go("tab.module2")
+        validateLoginInfo();
     };
 
     //注册确定按钮
