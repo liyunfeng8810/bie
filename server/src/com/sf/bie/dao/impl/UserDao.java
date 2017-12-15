@@ -28,9 +28,9 @@ public class UserDao extends CommonDao<User> implements IUserDao{
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public List<User> selectUser(){
+	public List<User> selectUser(String userIds){
 		DetachedCriteria criteria = DetachedCriteria.forClass(User.class);
-		//criteria.add(Restrictions.eq("id", ""))
+		criteria.add(Restrictions.in("id", userIds.split(",")));
 		return hibernateTemplate.findByCriteria(criteria);
 	}
 	

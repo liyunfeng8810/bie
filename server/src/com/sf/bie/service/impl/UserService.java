@@ -77,8 +77,8 @@ public class UserService implements IUserService{
 	 * @return
 	 */
 	@Override
-	public List<User> selectUser(){
-		return userDao.selectUser();
+	public List<User> selectUser(String userIds){
+		return userDao.selectUser(userIds);
 	}
 
 	@Override

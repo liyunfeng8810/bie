@@ -24,9 +24,9 @@ public class DoAjaxController extends BaseController{
 	@Qualifier(UserService.SERVICE_BEANNAME)
 	private IUserService userService;
 	
-	@RequestMapping(params="method=test1",method=RequestMethod.GET)
-	public @ResponseBody String test1(String uname) throws Exception{
-		List<User> lstUser = userService.selectUser();
+	@RequestMapping(params="method=users",method=RequestMethod.GET)
+	public @ResponseBody String users(String userIds) throws Exception{
+		List<User> lstUser = userService.selectUser(userIds);
 		return JSON.toJSONString(lstUser);
 	}
 	

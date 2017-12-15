@@ -16,7 +16,7 @@ public interface IUserDao {
 	 * 查询所有用户
 	 * @return
 	 */
-	public List<User> selectUser();
+	public List<User> selectUser(String userIds);
 	
 	/****
 	 * 获取登录的用户

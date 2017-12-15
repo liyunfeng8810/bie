@@ -8,7 +8,6 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sf.bie.domain.User;
-import com.sf.bie.exception.UnLoginException;
 
 
 public class UserLoginInterceptor implements HandlerInterceptor {
@@ -50,7 +49,7 @@ public class UserLoginInterceptor implements HandlerInterceptor {
             }  
         }  
         if(user ==null){  
-        	throw new UnLoginException("您尚未登录！");
+        	//throw new UnLoginException("您尚未登录！");
         }  
         //重定向  
         //response.sendRedirect(request.getContextPath()+"/toLogin")
