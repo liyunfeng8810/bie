@@ -1,1 +1,24 @@
 /* Empty. Add your own CSS if you like */
+.io-group-head{
+    top:0;
+    background:#ff6532;
+}
+.goBackStyle{
+    flex: 1;
+    font-size: 24px;
+    line-height: 24px;
+    color: #fff;
+}
+.io-head-center{
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    padding:0;
+}
+.col-center{
+    text-align: center;
+}
+.io-common-content{
+    margin-top:44px;
+    padding:0;
+}

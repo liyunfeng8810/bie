@@ -5,6 +5,7 @@ angularModuleSD.controller('loginCtrl', function($scope,$state,getData,$ionicLoa
         name:'',
         psd:''
     };
+
     //初始注册信息
     $scope.registerInfo = {
         name:'',
@@ -68,7 +69,8 @@ angularModuleSD.controller('loginCtrl', function($scope,$state,getData,$ionicLoa
 
     //登录确定按钮
     $scope.loginGoHomePage = function () {
-        validateLoginInfo();
+        $state.go("tab.module1");
+        //validateLoginInfo();
     };
 
     //注册确定按钮
