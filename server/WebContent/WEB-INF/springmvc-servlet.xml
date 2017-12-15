@@ -41,8 +41,14 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 
-
-
+	<!-- 异常  - 登录失败异常类-->  
+  <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">    
+     <property name="exceptionMappings">    
+       <props>   
+         <prop key="com.sf.bie.exception.UnLoginException">redirect:/toLogin.do</prop>    
+       </props>    
+     </property>    
+   </bean> 
 
 	<!--对模型视图名称的解析，即在模型视图名称添加前后缀 -->
 	<bean
