@@ -3,18 +3,20 @@ package com.sf.bie.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name="king_user")
 public class User {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(generator = "generator")
+	@GenericGenerator(name = "generator", strategy = "guid")
 	@Column(name="user_id")
-	private int id;
+	private String id;
 	
 	@Column(name="user_name")
 	private String uname;
@@ -41,10 +43,10 @@ public class User {
 	}
 	public User() {
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getUname() {

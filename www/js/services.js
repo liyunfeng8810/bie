@@ -190,6 +190,7 @@ angular.module('starter.services', [])
     })
 
 
+
     .factory('CityNames', function ($q) {//城市数据地点回传
         var cityDatas = {"num": "", "id": "", "name": "", "privateCityData": ""};
         return cityDatas;
