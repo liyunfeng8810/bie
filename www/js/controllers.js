@@ -1,7 +1,11 @@
 var angularModuleSD = angular.module('starter.controllers', []);
 
 
-
+function callLoading($timeout, $ionicLoading) {//loading超时取消
+  $timeout(function () {
+    $ionicLoading.hide();
+  }, 2000);
+}
 angularModuleSD.controller('BaseViewCtrl', function($scope, $ionicHistory,getViewData,loadModelFileAll) {
 
   var currentViewData;    //当前的view信息

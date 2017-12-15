@@ -1,5 +1,5 @@
 
-var baseUrl = 'http://192.168.43.103:8080/'; //baseUrl--本地的-周石育
+var baseUrl = 'http://10.2.4.40:8080/'; //baseUrl--本地的-周石育
 
 var loginUrl={
     login:'server/doajax.do',

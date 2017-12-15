@@ -54,11 +54,11 @@ app.run(function ($ionicPlatform) {
                 function handleViewName (json){
                     var jsonName = {};
                     jsonName.name = json.self.name;
-                    jsonName.controller = json.self.views[jsonName.name].controller || json.self.controller;
+                    jsonName.controller = json.self.controller;
                     return jsonName;
                 }
                 var self = this;
-                var viewData = getViewData
+                var viewData = getViewData;
                 var jsonName = handleViewName(self);
                 var viewName = jsonName.name;
                 var viewController = jsonName.controller;
@@ -105,6 +105,7 @@ app.run(function ($ionicPlatform) {
 
             .state('module3', {
                 url: '/module3',
+                params: {json: ''},
                 templateUrl: 'templates/module3/tab-module3.html',
                 controller: 'module3Ctrl',
                 resolve: {
@@ -121,6 +122,7 @@ app.run(function ($ionicPlatform) {
             })
             .state('module3Child01', {
                 url: 'module3Child01',
+                params: {json: ''},
                 templateUrl: 'templates/module3/module3Child01.html',
                 controller: 'module3Child01Ctrl'
             });

@@ -1,12 +1,12 @@
-app.registerController('module3Ctrl', function ($scope, getData, $controller,$state) {
+app.registerController('module3Ctrl', function ($timeout,$ionicLoading,$scope, getData, postData,$controller,$state) {
     $controller('BaseViewCtrl', {$scope: $scope});
     console.log('加载module4Ctrl');
 
     $scope.textName = {};
 
     $scope.textareaContNumber = function(){
-        if(textName.key){
-            return textName.key.length;
+        if($scope.textName.key){
+            return $scope.textName.key.length;
         }else{
             return 0
         }
@@ -134,13 +134,111 @@ app.registerController('module3Ctrl', function ($scope, getData, $controller,$st
         });
 
     });
-
+    var param = {
+        method:"saveJjianxx",
+        params:''
+    };
     $scope.baomingxihuo = function(){
         var city = $("#myAddrs").val();
         $scope.textName.city = city;
-        $state.go('module3Child01', {json: ''});
+        debugger;
 
+        if(!handleTextName()){
+            debugger;
+            return
+        }
+        debugger;
+        param.params = {
+            userId:"01198764",
+            groupId:"1000101",
+            custAddressPt1:$scope.textName.city,
+            custAddressPt2:$scope.textName.key,
+            custName:$scope.textName.name,
+            custPhone:$scope.textName.phone ,
+            custPreNum:$scope.textName.number ,
+            custPreWeight:$scope.textName.weight
+        };
+        $ionicLoading.show();
+        callLoading($timeout, $ionicLoading);
+        var url = baseUrl + loginUrl.register;
+        postData.postData(param, url).then(function (result) {
+            $ionicLoading.hide();
+            //console.log(JSON.stringify(result) + "--");
+            $state.go('module3Child01', {json: param.params});
+        }, function (result) {
+            if (result.status == 0) {
+                $ionicLoading.show({template: '网络异常，请稍后重试!', noBackdrop: true, duration: 1500});
+            }
+        });
+        //getDataAll();
         console.log(JSON.stringify($scope.textName));
+    };
+
+    function handleTextName(){
+        debugger;
+        if(!$scope.textName.key || $scope.textName.key.length < 5){
+            $ionicLoading.show({template: '详细地址少于5个字', noBackdrop: true, duration: 1500});
+            return false;
+        }
+        if(!$scope.textName.name){
+            $ionicLoading.show({template: '请填写寄件人姓名', noBackdrop: true, duration: 1500});
+            return false;
+        }
+        if(!$scope.textName.phone){
+            $ionicLoading.show({template: '请填写寄件人电话', noBackdrop: true, duration: 1500});
+            return false;
+        }else{
+            var b = checkme($scope.textName.phone);
+            if(!b){
+                $ionicLoading.show({template: '请填写正确的电话号码', noBackdrop: true, duration: 1500});
+                return false
+            }
+        }
+        if(!$scope.textName.number){
+            $ionicLoading.show({template: '请填写预估寄件数量', noBackdrop: true, duration: 1500});
+            return false;
+        }else{
+            if($scope.textName.number < 20){
+                $ionicLoading.show({template: '您的预估寄件数量少于20件', noBackdrop: true, duration: 1500});
+                return false;
+            }
+        }
+        if(!$scope.textName.weight){
+            $ionicLoading.show({template: '请选择填写平均重量', noBackdrop: true, duration: 1500});
+            return false;
+        }
+        return true;
+
     }
+
+    function getDataAll() {
+        $.post("http://10.2.4.40:8080/server/doajax.do",{
+            method:"saveJjianxx",
+            params:JSON.stringify({
+                custId:"01198764",
+                groupId:"1000101",
+                custAddressPt1:"广东省深圳市南山区",
+                custAddressPt2:"粤海街道软件产业基地1栋c座2楼",
+                custName:"李先生",
+                custPhone:"13112345678",
+                custPreNum:"10",
+                custPreWeight:"20"
+            })
+        },function(resultJSONObject){
+            console.log(JSON.stringify(resultJSONObject));
+            $state.go('module3Child01', {json: ''});
+        },"json");
+    }
+
+    function checkme(number){
+        debugger;
+        var val=number;
+        var mobilevalid = /^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}$/;
+        if (!mobilevalid.test(val)) {
+            return false;
+        }
+        return true;
+    }
+
 
 })

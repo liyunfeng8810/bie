@@ -165,7 +165,7 @@ angular.module('starter.services', [])
     })
     .factory('postData', function ($q) {                     //通用data,其他特殊需求可新建
         function postData(param, url) {
-            var url = baseUrl + url + "?masterId=" + masterId;
+
             var deferred = $q.defer();
             var datas = deferred.promise;
             $.ajax({
