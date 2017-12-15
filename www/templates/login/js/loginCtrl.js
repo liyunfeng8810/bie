@@ -38,6 +38,7 @@ angularModuleSD.controller('loginCtrl', function($scope,$state,postData,$ionicLo
         },10000)
     };
 
+
     //登录请求
     var  getloginData = function() {
         $ionicLoading.show();

@@ -14,18 +14,18 @@
     <ion-content class="padding io-common-content" scrollbar-y="false">
         <!--head-->
         <div class="io-group-box">
-            <div class="io-page-title">鞋服专送0809312期</div>
+            <div class="io-page-title">{{market.mktNameShow}}</div>
             <div class="io-page-tips">
-                1.5-3kg 每日最低需 <span>20</span> 件
+                {{market.weightMin}}-{{market.weightMax}}kg 每日最低需 <span>{{market.dailyMinPackages}}</span> 件
             </div>
         </div>
 
         <!--banner-->
         <div class="io-group-box">
             <div class="io-detail-banner">
-                <div class="img">banner</div>
+                <div class="img"><img src="img/banner.jpg" alt=""></div>
                 <div class="io-detail-banner-tips">
-                    <span>低至 ￥<i>6</i></span>
+                    <span>低至￥<i>6</i></span>
                     <b>1.5kg</b>
                 </div>
             </div>
@@ -80,8 +80,8 @@
         </div>
 
         <div class="io-cantuan-info" ng-click="goModule3()">
-            <span class="io-do-now">立即参加</span>
-            <span class="io-share-now"></span>
+            <span class="io-do-now" ng-click="doGroupNow()">立即参加</span>
+            <span class="io-share-now" ng-click="shareGroupInfo()"></span>
         </div>
     </ion-content>
 </ion-view>
