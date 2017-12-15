@@ -32,27 +32,28 @@ public class UserController  extends BaseController{
 	@RequestMapping(value = "/", method = RequestMethod.GET)  
     public String welcome(HttpServletRequest request){  
         if(request.getSession().getAttribute("userToken")!=null){  
-            return "/index";  
+            return INDEX;  
         }  
-        return "login";  
+        return LOGIN;
     }  
 	
     @RequestMapping(value = "/toLogin.do", method = RequestMethod.GET)  
     @ResponseBody
     public String toLogin(HttpServletRequest request){  
         if(request.getSession().getAttribute("userToken")==null){
-            return "login";
+            return LOGIN;
         }  
-        return "index";
+        return INDEX;
     }  
 	      
     @RequestMapping(value = "/login.do", method = RequestMethod.POST)
     @ResponseBody  
     public Map<String, Object> login(
     		@RequestParam(required=true,value="email") String email, 
-    		@RequestParam(required=true,value="pwd") String pwd,HttpServletRequest request){  
+    		@RequestParam(required=true,value="pwd") String pwd,
+    		HttpServletRequest request){  
     	Map<String, Object> maps = new HashMap<>();
-    	maps.put("result","FAIL");//验证失败
+    	maps.put("result",FAIL);//验证失败
         maps.put("msg","登录失败");
         try{     
                 //TODO 登陆成功,保存session  
@@ -65,11 +66,11 @@ public class UserController  extends BaseController{
                 //设置超时无效 
                 session.setMaxInactiveInterval(20);
             	
-                maps.put("result","SUCCESS");
+                maps.put("result",SUCCESS);
                 maps.put("msg","登录成功");
         } catch (Exception e){  
-        	 maps.put("result","ERROE");  
-             maps.put("msg","系统错误");    
+        	 maps.put("result",ERROR);  
+             maps.put("msg","系统错误");
         }  
         return maps;  
     }  
@@ -83,48 +84,47 @@ public class UserController  extends BaseController{
                 HttpSession session =request.getSession();
                 session.removeAttribute("userToken");
             	
-                maps.put("result","SUCCESS");
+                maps.put("result",SUCCESS);
                 maps.put("msg","登出成功");
         } catch (Exception e){  
-        	 maps.put("result","ERROE");
+        	 maps.put("result",ERROR);
              maps.put("msg","系统错误"); 
         }  
         return maps;  
     } 
 	
 	@RequestMapping(value = "/reg.do", method = RequestMethod.POST)
-	public String reg(String uname){
-		System.out.println("UserController.reg()");
-		System.out.println(uname);
+	@ResponseBody
+	public String reg(
+			@RequestParam(required=true,value="email") String email, 
+			@RequestParam(required=true,value="uname") String uname,
+    		@RequestParam(required=true,value="pwd") String pwd){
 		User user = new User();
 		user.setUname(uname);
+		user.setEmail(email);
+		user.setPwd(pwd);
 		userService.addUser(user);
-		return "index";
+		return LOGIN;
 	}
 	
 	@RequestMapping(value = "/reg2.do", method = RequestMethod.POST)
 	public ModelAndView reg2(User user){
 		System.out.println("UserController.reg2()");
 		System.out.println(user.getUname());
-		ModelAndView mav = new ModelAndView("index");
+		ModelAndView mav = new ModelAndView(INDEX);
 		return mav;
 	}
 	
 	
 	@RequestMapping(value = "/reg3.do", method = RequestMethod.POST)
 	public String reg3(@RequestParam("uname") String name,HttpServletRequest req,ModelMap map){
-		System.out.println("UserController.reg()");
-		System.out.println(name);
 		req.getSession().setAttribute("c", "ccc");
 		map.put("a", "aaa");
-		
-		return "index";
+		return INDEX;
 	}
 	
 	@RequestMapping(value = "/reg4.do", method = RequestMethod.POST)
 	public String reg4(@ModelAttribute("a") String a,HttpServletRequest req,ModelMap map){
-		System.out.println("UserController.reg4()");
-		System.out.println(a);
 		return "redirect:http://www.baidu.com";
 	}
 	
@@ -133,7 +133,7 @@ public class UserController  extends BaseController{
 		System.out.println("UserController.reg5()");
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("index");
+		mav.setViewName(INDEX);
 		
 		User u = new User("老高");
 		User u2 = new User("高淇");

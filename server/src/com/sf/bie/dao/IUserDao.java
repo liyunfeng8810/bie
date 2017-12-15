@@ -10,7 +10,7 @@ public interface IUserDao {
 	 * 添加用户
 	 * @param user
 	 */
-	public void add(User user);
+	public void addUser(User user);
 	
 	/****
 	 * 查询所有用户

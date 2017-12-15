@@ -19,9 +19,8 @@ public class UserDao extends CommonDao<User> implements IUserDao{
 	 * 添加用户
 	 * @param user
 	 */
-	public void add(User u){
-		System.out.println("UserDao.add()");
-		hibernateTemplate.save(u);
+	public void addUser(User user){
+		hibernateTemplate.save(user);
 	}
 	
 	/****

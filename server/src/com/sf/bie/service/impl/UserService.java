@@ -26,7 +26,7 @@ public class UserService implements IUserService{
 	 */
 	@Override
 	public void addUser(User user){
-		userDao.add(user);
+		userDao.addUser(user);
 	}
 	
 	/****
