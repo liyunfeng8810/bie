@@ -79,8 +79,11 @@ angular.module('starter.services', [])
             },
             loadAll: function (data) {
                 if (data) {
-                    data.child ? loadCtrlJs(data, ControllerChecker) : null;        //动态加载子级js,
-                    data.child ? loadAppState(data.child) : null;                    //子级路由
+                    if(data.child){
+                        loadCtrlJs(data, ControllerChecker);        //动态加载子级js,
+                        loadAppState(data.child);                    //子级路由
+                    }
+
                 }
             },
             removeAllfile: function (data) {

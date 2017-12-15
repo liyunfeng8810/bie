@@ -62,7 +62,6 @@ app.run(function ($ionicPlatform) {
                 var jsonName = handleViewName(self);
                 var viewName = jsonName.name;
                 var viewController = jsonName.controller;
-                debugger;
                 isLoadCss ? addMovementCss(getViewData[viewName].cssPath): null;
                 var deferred = $q.defer();
                 if(!ControllerChecker.exists(viewController)){
