@@ -1,4 +1,4 @@
-angularModuleSD.controller('module1Ctrl', function ($scope, getData,$state, $ionicLoading, $rootScope) {
+angularModuleSD.controller('module1Ctrl', function ($scope,$state, $ionicLoading) {
     var proListGetData = function () {
         $ionicLoading.show();
         var url =baseUrl + moduleAbUrl.proDetail;
@@ -17,6 +17,5 @@ angularModuleSD.controller('module1Ctrl', function ($scope, getData,$state, $ion
         },"json");
         $ionicLoading.hide();
     };
-
     proListGetData();
 });
